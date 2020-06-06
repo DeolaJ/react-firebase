@@ -11,12 +11,18 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
+    "rewrites": [{
+      "source": "/public/**",
+      "destination": "/public.html"
+    },
+    {
+      "source": "/uploadForm",
+      "function": "uploadForm"
+    },
+    {
+      "source": "**",
+      "destination": "/index.html"
+    }]
   },
   "emulators": {
     "functions": {

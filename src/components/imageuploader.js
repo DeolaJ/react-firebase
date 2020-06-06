@@ -4,6 +4,10 @@ import { doUploadImage, doUploadFormImage } from '../utils/upload'
 
 const ImageUploader = (props) => {
   const [filename, setFilename] = useState("")
+  const [secondFilename, setSecondFilename] = useState("")
+  const [imageUrl, setImageUrl] = useState("")
+  const [imageUrlForm, setImageUrlForm] = useState("")
+
   const options = {
     maxSizeMB: 1
   }
@@ -12,9 +16,10 @@ const ImageUploader = (props) => {
     const output = await imageCompression(file, options)
     let reader = new FileReader(output)
     reader.readAsDataURL(output)
-    reader.onloadend = function () {
+    reader.onloadend = async function () {
       setFilename(file.name)
-      doUploadImage(reader.result)
+      let secureUrl = await doUploadImage(reader.result)
+      setImageUrl(secureUrl)
     }
   }
 
@@ -22,9 +27,10 @@ const ImageUploader = (props) => {
     const output = await imageCompression(file, options)
     let reader = new FileReader(output)
     reader.readAsDataURL(output)
-    reader.onloadend = function () {
-      setFilename(file.name)
-      doUploadFormImage(reader.result)
+    reader.onloadend = async function () {
+      setSecondFilename(file.name)
+      let secureUrl = await doUploadFormImage(reader.result)
+      setImageUrlForm(secureUrl)
     }
   }
 
@@ -33,6 +39,7 @@ const ImageUploader = (props) => {
       <input 
         type="file" 
         id="file-upload"
+        className="file-upload-input"
         accept="image/*"  
         onChange={e => handleFiles(e.target.files[0])}
       />
@@ -40,6 +47,7 @@ const ImageUploader = (props) => {
         htmlFor="file-upload" 
         arial-label="Click to upload image" 
         id="upload-label"
+        className="file-upload-label"
       >
         Upload Image
       </label>
@@ -49,12 +57,20 @@ const ImageUploader = (props) => {
           Uploaded {filename}
         </p>
       }
+
+      {
+        imageUrl &&
+        <p>
+          <a href={imageUrl} rel="noopener noreferrer" target="_blank">Cloudinary Link</a>
+        </p>
+      }
       <br/>
       <br/>
 
       <input 
         type="file" 
         id="file-upload-form"
+        className="file-upload-input"
         accept="image/*"  
         onChange={e => handleFormFiles(e.target.files[0])}
       />
@@ -62,13 +78,21 @@ const ImageUploader = (props) => {
         htmlFor="file-upload-form" 
         arial-label="Click to upload image" 
         id="upload-form-label"
+        className="file-upload-label"
       >
         Upload Image - Form
       </label>
       {
-        filename &&
+        secondFilename &&
         <p>
-          Uploaded {filename}
+          Uploaded {secondFilename}
+        </p>
+      }
+
+      {
+        imageUrlForm &&
+        <p>
+          <a href={imageUrlForm} rel="noopener noreferrer" target="_blank">Cloudinary Link (form)</a>
         </p>
       }
     </form>

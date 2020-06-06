@@ -1,6 +1,6 @@
 import firebase from '../firebase'
 
-export const doUploadImage = (dataUrl) => {
+export const doUploadImage = async (dataUrl) => {
   // Get Cloud function named Upload
   var upload = firebase.functions().httpsCallable('upload');
   const data = {
@@ -10,45 +10,36 @@ export const doUploadImage = (dataUrl) => {
   return upload(JSON.stringify(data))
   .then(response => {
     const data = JSON.parse(response.data)
-    // Update the Cloudinary upload url
-    this.setState({
-      uploadUrl: data.secure_url ? data.secure_url : "",
-      uploading: false
-    })
+    // Return the Cloudinary image link
+    return data.secure_url ? data.secure_url : ""
   })
   .catch((error) => { 
-    // Set any error message
-    this.setState({
-      uploading: false,
-      error: error
-    })
-    console.log(error)
+    // Return any error message
+    return error
   })
 }
 
-export const doUploadFormImage = (file) => {
-  // Get Cloud function named Upload
-  var uploadForm = firebase.functions().httpsCallable('uploadForm');
-  const formData = new FormData()
-  formData.append('file', file)
-
+export const doUploadFormImage = async (dataUrl) => {
+  const data = {
+    dataUrl: dataUrl
+  }
   // Upload Image to Cloudinary
-  return uploadForm(formData)
+  return fetch('/uploadForm', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }
+  )
+  .then(response => response.json())
   .then(response => {
-    const data = JSON.parse(response.data)
-    // Update the Cloudinary upload url
-    this.setState({
-      uploadUrl: data.secure_url ? data.secure_url : "",
-      uploading: false
-    })
+    // Return the Cloudinary image link
+    return response.secure_url ? response.secure_url : ""
   })
   .catch((error) => { 
-    // Set any error message
-    this.setState({
-      uploading: false,
-      error: error
-    })
-    console.log(error)
+    // Return any error message
+    return error
   })
 }
 
