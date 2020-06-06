@@ -24,7 +24,7 @@ Add your Firebase app config to the .env file
 
 ## Available Scripts
 
-In the project directory, you can run:
+### Development
     yarn start
 
 Runs the app in the development mode.<br />
