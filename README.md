@@ -2,7 +2,7 @@ The Demo is live on [React-Firebase](https://react-firebase-19.web.app "React Fi
 This Web Application was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Getting Started 
-To clone this repository, 
+To clone this repository,
     git clone https://github.com/DeolaJ/react-firebase.git
     cd react-firebase
     yarn install
