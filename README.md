@@ -1,8 +1,8 @@
-The Demo is live on [React-Firebase](https://react-firebase-19.web.app "React Firebase")
+The Demo is live on [React-Firebase](https://react-firebase-19.web.app "React Firebase").<br />
+
 This Web Application was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Getting Started 
-To clone this repository,
+## Getting Started
     git clone https://github.com/DeolaJ/react-firebase.git
     cd react-firebase
     yarn install
@@ -14,11 +14,13 @@ To clone this repository,
 ### Cloudinary
 To run this project, you need a Cloudinary account. You can sign up with Cloudinary.
 Add cloudinary variables to your cloud functions by running,
+
+#### Firebase functions
     firebase functions:config:set cloudinary.apikey="// your api key" cloudinary.cloudname="// your cloudname" cloudinary.apisecret="// your apisecret"
 
 ### Edit firebase environment variables
-Check the /sampledotenv file, and create an .env file using that sample. Add your Firebase app config to the .env file 
-
+Check the /sampledotenv file, and create an .env file using that sample. <br />
+Add your Firebase app config to the .env file 
 
 ## Available Scripts
 
@@ -31,7 +33,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-To create the production build, run
+### Production build
     yarn build
 
 Builds the app for production to the `build` folder.<br />
