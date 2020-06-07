@@ -7,6 +7,11 @@ This Web Application was bootstrapped with [Create React App](https://github.com
     cd react-firebase
     yarn install
 
+### Initialise the Firebase project
+    npm install -g firebase-tools
+    firebase login
+    firebase init
+
 ### Install Cloud function libraries
     cd react-firebase/functions
     npm install
@@ -15,7 +20,7 @@ This Web Application was bootstrapped with [Create React App](https://github.com
 To run this project, you need a Cloudinary account. You can sign up with Cloudinary.
 Add cloudinary variables to your cloud functions by running,
 
-#### Firebase functions
+#### Set Firebase Function environment variables
     firebase functions:config:set cloudinary.apikey="// your api key" cloudinary.cloudname="// your cloudname" cloudinary.apisecret="// your apisecret"
 
 ### Edit firebase environment variables
