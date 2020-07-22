@@ -1,3 +1,4 @@
+The Article - [How to create an Image Uploader using React and Cloudinary](https://medium.com/frontend-digest/how-to-create-an-image-uploader-using-react-and-cloudinary-5f07959723c4?source=your_stories_page--------------------------- "How to create an Image Uploader using React and Cloudinary").<br />
 The Demo is live on [React-Firebase](https://react-firebase-19.web.app "React Firebase").<br />
 
 This Web Application was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
